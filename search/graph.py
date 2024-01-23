@@ -73,13 +73,3 @@ class Graph:
             return None
         else:
             return list(visited)
-        
-
-example3 = nx.DiGraph()
-example3.add_nodes_from(['A','B','C','D','E'])
-example3.add_edges_from([('A','B'),('B','C'),('C','D'),('D','E'),('E', 'A')])
-
-test_g = Graph('data/tiny_network.adjlist')
-test_g.graph = example3
-print(test_g.bfs('A'))
-
