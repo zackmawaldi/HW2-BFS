@@ -28,8 +28,18 @@ class Graph:
         """
         graph = self.graph
 
+        '''Edge case checking'''
+        # check wrong graph type
         if type(graph) != type(nx.DiGraph()):
-            raise TypeError(f"You're graph is of type {type(graph)} not {type(nx.Graph())}")
+            raise TypeError(f"You're graph is of type {type(graph)} not {type(nx.DiGraph())}")
+        
+        # check empty graph. if so, the "path" is an empty list
+        if graph.size == 0:
+            return []
+        
+        # check if starting node not found. if so, raise networkx's in-house exception for missing node
+        if start not in graph.nodes:
+            raise nx.exception.NetworkXError(f'The starting node {start} is not in the digraph!')
 
         q = queue.Queue()
         visited = set()
@@ -63,3 +73,13 @@ class Graph:
             return None
         else:
             return list(visited)
+        
+
+example3 = nx.DiGraph()
+example3.add_nodes_from(['A','B','C','D','E'])
+example3.add_edges_from([('A','B'),('B','C'),('C','D'),('D','E'),('E', 'A')])
+
+test_g = Graph('data/tiny_network.adjlist')
+test_g.graph = example3
+print(test_g.bfs('A'))
+
