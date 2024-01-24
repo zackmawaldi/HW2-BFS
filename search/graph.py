@@ -42,20 +42,20 @@ class Graph:
             raise nx.exception.NetworkXError(f'The starting node {start} is not in the digraph!')
 
         q = queue.Queue()
-        visited = set()
+        visited = []
 
         distances = {start: (0,[start], None)}
                     # node: (distance, path, parent)
         
         q.put(start)
-        visited.add(start)
+        visited.append(start)
         while q.qsize() != 0:
             vertix = q.get()
             neighbors = list(graph.neighbors(vertix)) # list casting is to avoid a wierd bug...
 
             for n in neighbors:
                 if n not in visited:
-                    visited.add(n)
+                    visited.append(n)
                     q.put(n)
 
                     # retrive runtime by getting parent path + current node n
