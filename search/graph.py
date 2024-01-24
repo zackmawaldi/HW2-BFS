@@ -34,7 +34,7 @@ class Graph:
             raise TypeError(f"You're graph is of type {type(graph)} not {type(nx.DiGraph())}")
         
         # check empty graph. if so, the "path" is an empty list
-        if graph.size == 0:
+        if graph.size() == 0:
             return []
         
         # check if starting node not found. if so, raise networkx's in-house exception for missing node
