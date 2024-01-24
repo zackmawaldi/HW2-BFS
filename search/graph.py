@@ -72,4 +72,4 @@ class Graph:
         if end:
             return None
         else:
-            return list(visited)
+            return visited
